@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Valentine 💘</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        height: 100vh;
+        background: linear-gradient(135deg, #ff0066, #ff3385, #ff66a3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Arial', sans-serif;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px 50px;
+        border-radius: 25px;
+        text-align: center;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 10;
+        max-width: 600px;
+        width: 90%;
+    }
+
+    h1 {
+        color: #ff0066;
+        font-size: 2.8em;
+        margin-bottom: 40px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .buttons-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        position: relative;
+        flex-wrap: wrap;
+    }
+
+    button {
+        font-size: 1.5em;
+        padding: 18px 40px;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        position: relative;
+        font-weight: bold;
+        letter-spacing: 1px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        z-index: 2;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    #yes {
+        background: linear-gradient(45deg, #ff0066, #ff3385);
+        color: white;
+    }
+
+    #yes:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(255, 0, 102, 0.4);
+    }
+
+    #no {
+        background: linear-gradient(45deg, #d8d8d8, #f0f0f0);
+        color: #666;
+    }
+
+    #no:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    /* SIM ENORME NO FINAL */
+    .sim-enorme {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        background: linear-gradient(135deg, #ff0066, #ff3385, #ff66a3);
+        animation: simEntrada 1s ease-out forwards;
+    }
+
+    .sim-texto {
+        font-size: 25vw;
+        color: white;
+        text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+        animation: pulsarSim 1.5s infinite alternate;
+        font-weight: bold;
+        letter-spacing: 10px;
+        text-align: center;
+    }
+
+    @keyframes simEntrada {
+        0% {
+            opacity: 0;
+            transform: scale(0.1) rotate(-180deg);
+        }
+        70% {
+            opacity: 1;
+            transform: scale(1.1) rotate(10deg);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+    }
+
+    @keyframes pulsarSim {
+        0% {
+            transform: scale(1);
+            text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        100% {
+            transform: scale(1.1);
+            text-shadow: 15px 15px 30px rgba(0, 0, 0, 0.4),
+                         0 0 50px rgba(255, 255, 255, 0.5);
+        }
+    }
+
+    .coracoes {
+        position: absolute;
+        font-size: 30px;
+        animation: flutuar 4s linear forwards;
+        z-index: 999;
+    }
+
+    @keyframes flutuar {
+        0% {
+            transform: translateY(100vh) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    .botao-recomecar {
+        position: fixed;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        color: #ff0066;
+        padding: 15px 40px;
+        font-size: 1.5em;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        z-index: 1001;
+        opacity: 0;
+        animation: aparecerBotao 0.5s 3s forwards;
+        font-weight: bold;
+    }
+
+    @keyframes aparecerBotao {
+        0% {
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    }
+
+    .botao-recomecar:hover {
+        background: #ff0066;
+        color: white;
+        transform: translateX(-50%) scale(1.05);
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2em;
+        }
+        
+        button {
+            font-size: 1.2em;
+            padding: 15px 30px;
+        }
+        
+        .buttons-container {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .sim-texto {
+            font-size: 40vw;
+            letter-spacing: 5px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+    <h1 id="text">Lina Júlia Eurico Tembe will you be my Valentine? 💖</h1>
+    
+    <div class="buttons-container">
+        <button id="yes">SIM 😍</button>
+        <button id="no">NÃO 🙃</button>
+    </div>
+</div>
+
+<div class="sim-enorme hidden" id="simEnorme">
+    <div class="sim-texto">S I M !</div>
+</div>
+
+<button class="botao-recomecar hidden" id="recomecar">❤️ Fazer de novo ❤️</button>
+
+<script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const card = document.getElementById("card");
+    const simEnorme = document.getElementById("simEnorme");
+    const recomecarBtn = document.getElementById("recomecar");
+    
+    let tentativasFuga = 0;
+    let simClicado = false;
+    
+    // Botão NÃO foge quando o mouse passa por cima
+    noBtn.addEventListener('mouseover', function() {
+        if (simClicado) return;
+        
+        tentativasFuga++;
+        
+        // Torna o botão NÃO maior e mais visível após algumas tentativas
+        if (tentativasFuga > 5) {
+            noBtn.textContent = "TALVEZ? 🤔";
+            noBtn.style.background = "linear-gradient(45deg, #ffcc00, #ffdd44)";
+            noBtn.style.color = "#b30000";
+            noBtn.style.fontSize = "1.8em";
+        }
+        
+        if (tentativasFuga > 10) {
+            noBtn.textContent = "OK, VAMOS! 😊";
+        }
+        
+        // Move o botão NÃO para uma posição aleatória
+        const maxX = window.innerWidth - noBtn.offsetWidth - 50;
+        const maxY = window.innerHeight - noBtn.offsetHeight - 50;
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+        
+        noBtn.style.position = "fixed";
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+        
+        // Cria alguns corações quando tenta fugir
+        criarCoracoes(3);
+    });
+    
+    // Clique no SIM
+    yesBtn.addEventListener('click', function() {
+        if (simClicado) return;
+        simClicado = true;
+        
+        // Esconde o card
+        card.classList.add('hidden');
+        
+        // Mostra o SIM enorme
+        simEnorme.classList.remove('hidden');
+        
+        // Cria muitos corações
+        criarCoracoes(100);
+        
+        // Mostra o botão de recomeçar depois de 2 segundos
+        setTimeout(() => {
+            recomecarBtn.classList.remove('hidden');
+        }, 2000);
+        
+        // Cria corações continuamente
+        setInterval(() => {
+            if (simClicado) {
+                criarCoracoes(5);
+            }
+        }, 1000);
+    });
+    
+    // Botão NÃO também pode ativar o SIM depois de muitas tentativas
+    noBtn.addEventListener('click', function() {
+        if (tentativasFuga >= 8 && !simClicado) {
+            yesBtn.click();
+        }
+    });
+    
+    // Função para criar corações
+    function criarCoracoes(quantidade) {
+        for (let i = 0; i < quantidade; i++) {
+            setTimeout(() => {
+                const coracao = document.createElement('div');
+                coracao.classList.add('coracoes');
+                coracao.innerHTML = '💖';
+                
+                // Tamanho aleatório
+                const tamanho = Math.random() * 30 + 20;
+                coracao.style.fontSize = `${tamanho}px`;
+                
+                // Posição aleatória
+                const posicaoX = Math.random() * window.innerWidth;
+                coracao.style.left = `${posicaoX}px`;
+                coracao.style.top = `${window.innerHeight}px`;
+                
+                // Duração da animação aleatória
+                const duracao = Math.random() * 3 + 3;
+                coracao.style.animationDuration = `${duracao}s`;
+                
+                // Atraso aleatório
+                coracao.style.animationDelay = `${Math.random() * 2}s`;
+                
+                document.body.appendChild(coracao);
+                
+                // Remove o coração após a animação
+                setTimeout(() => {
+                    if (coracao.parentNode) {
+                        coracao.parentNode.removeChild(coracao);
+                    }
+                }, duracao * 1000 + 2000);
+            }, i * 100);
+        }
+    }
+    
+    // Botão para recomeçar
+    recomecarBtn.addEventListener('click', function() {
+        // Reseta tudo
+        simClicado = false;
+        tentativasFuga = 0;
+        
+        // Esconde o SIM enorme e o botão de recomeçar
+        simEnorme.classList.add('hidden');
+        recomecarBtn.classList.add('hidden');
+        
+        // Mostra o card novamente
+        card.classList.remove('hidden');
+        
+        // Reseta o botão NÃO
+        noBtn.textContent = "NÃO 🙃";
+        noBtn.style.background = "linear-gradient(45deg, #d8d8d8, #f0f0f0)";
+        noBtn.style.color = "#666";
+        noBtn.style.fontSize = "1.5em";
+        noBtn.style.position = "";
+        noBtn.style.left = "";
+        noBtn.style.top = "";
+        
+        // Cria alguns corações para celebrar o recomeço
+        criarCoracoes(20);
+    });
+    
+    // Cria alguns corações iniciais
+    window.addEventListener('load', function() {
+        criarCoracoes(15);
+    });
+</script>
+</body>
+</html>
